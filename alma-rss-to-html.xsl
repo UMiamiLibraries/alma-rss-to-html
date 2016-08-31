@@ -8,7 +8,8 @@
                 <title>New Items</title>
             </head>
             <body>
-                <xsl:apply-templates select="/rss//item"/>
+              <xsl:apply-templates select="/rss//item"/>
+	      <script type="text/javascript" src="bookList.js">&#160;</script> 
             </body>
         </html>
     </xsl:template>

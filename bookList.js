@@ -40,7 +40,7 @@ function bookList() {
 			var imgCover = document.createElement('img');
 			imgCover.setAttribute('src', data);
 			console.log(grandFather);
-			grandFather.append(imgCover);
+			grandFather.prepend(imgCover);
 		    });
 		});
 	    });

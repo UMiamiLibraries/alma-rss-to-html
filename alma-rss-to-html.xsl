@@ -14,7 +14,7 @@
             </body>
         </html>
     </xsl:template>
-    <xsl:template match="/rss//item">
+    <xsl:template match="/rss//item[position() &lt; 10]">
         <xsl:choose>
             <xsl:when test="./mattype/text()='BOOK'">
                 <div class="item" vocab="http://schema.org/" typeof="Book">

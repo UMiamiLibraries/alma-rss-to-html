@@ -8,7 +8,7 @@
                 <title>New Items</title>
             </head>
             <body>
-              <xsl:apply-templates select="/rss//item"/>
+              <xsl:apply-templates select="/rss//item[position() &lt; 10]"/>
 	      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 	      <script type="text/javascript" src="bookList.js">&#160;</script> 
             </body>

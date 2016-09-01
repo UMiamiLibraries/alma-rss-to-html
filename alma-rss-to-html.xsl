@@ -13,7 +13,59 @@
 	<script>
 	  <xsl:text disable-output-escaping="yes">
 	    <![CDATA[
-		     function bookList(){"use strict";var a={settings:{},strings:{},bindUiActions:function(){a.iterateUrls()},init:function(){a.bindUiActions()},iterateUrls:function(){document.querySelectorAll('[property="url"]');$(".item-title a").each(function(a){var b=$(this).attr("href"),c=$(this).parent().parent(),d=b.split(","),e=d[d.length-1],f="http://sp.library.miami.edu/external_scripts/newbooks/pnx.php?alma_id="+e;$.get(f,function(a){var b=$.parseJSON(a).search.isbn;if(Array.isArray(b))for(var d=0;d<b.length;d++)if(13===b[d].length){b=b[d];break}var e="http://sp.library.miami.edu/external_scripts/newbooks/bookcover.php?syndetics_client_code=miamih&image_size=LC&isbn="+b;$.get(e,function(a){var b=document.createElement("img");b.setAttribute("src",a),console.log(c),c.prepend(b)})})})}};return a}var bookList=bookList();bookList.init();
+		     function bookList() {
+
+    "use strict";
+
+    var myBookList = {
+
+        settings: {},
+        strings: {},
+        bindUiActions: function () {
+            myBookList.iterateUrls();
+        },
+        init: function () {
+            myBookList.bindUiActions();
+        },
+        iterateUrls: function () {
+            var elements = document.querySelectorAll('[property="url"]');
+
+	    $('.item-title a').each(function(i) {
+		var url = $(this).attr('href');
+		var grandFather = $(this).parent().parent();
+		var split = url.split(",");
+                var almaId = split[split.length - 1];
+                var newUrl = 'http://sp.library.miami.edu/external_scripts/newitems/pnx.php?alma_id=' + almaId;
+
+		$.get(newUrl, function(data) {
+
+		    var isbn = $.parseJSON(data).search.isbn;
+		    if( Array.isArray(isbn)) {
+                        for (var j = 0; j < isbn.length; j++){
+                            if (isbn[j].length === 13){
+                                isbn = isbn [j];
+                                break;
+                            }
+                        }
+                    }
+
+		    var bookCoverUrl = "http://sp.library.miami.edu/external_scripts/newitems/um-book-cover/bookcover.php?syndetics_client_code=miamih&image_size=LC&isbn=" + isbn;
+		    
+		    $.get(bookCoverUrl, function(data) {
+			var imgCover = document.createElement('img');
+			imgCover.setAttribute('src', data);
+			console.log(grandFather);
+			grandFather.prepend(imgCover);
+		    });
+		});
+	    });
+	}	    
+    };
+    return myBookList;
+}
+
+var bookList = bookList();
+bookList.init();
 	    ]]>
 	  </xsl:text>
 	</script>

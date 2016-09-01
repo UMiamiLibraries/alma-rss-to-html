@@ -3,13 +3,7 @@
 		xmlns:xs="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="xs" version="1.0">
   <xsl:output method="html" doctype-system="about:legacy-compat" encoding="UTF-8" indent="yes"/>
   <xsl:template match="/">
-    <html>
-      <head>
-        <title>New Items</title>
-      </head>
-      <body>
         <xsl:apply-templates select="/rss//item[position() &lt; 10]"/>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 	<script>
 	  <xsl:text disable-output-escaping="yes">
 	    <![CDATA[
@@ -69,9 +63,6 @@ bookList.init();
 	    ]]>
 	  </xsl:text>
 	</script>
-	
-      </body>
-    </html>
   </xsl:template>
   <xsl:template match="/rss//item[position() &lt; 10]">
     <xsl:choose>

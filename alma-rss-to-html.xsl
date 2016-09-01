@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 		xmlns:xs="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="xs" version="1.0">
-  <xsl:output method="html" doctype-system="about:legacy-compat" encoding="UTF-8" indent="yes"/>
   <xsl:template match="/">
+  
         <xsl:apply-templates select="/rss//item[position() &lt; 10]"/>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 	<script>
 	  <xsl:text disable-output-escaping="yes">
 	    <![CDATA[
@@ -63,6 +64,8 @@ bookList.init();
 	    ]]>
 	  </xsl:text>
 	</script>
+	
+   
   </xsl:template>
   <xsl:template match="/rss//item[position() &lt; 10]">
     <xsl:choose>

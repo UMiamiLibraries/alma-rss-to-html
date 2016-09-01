@@ -4,7 +4,6 @@
   <xsl:template match="/">
   
         <xsl:apply-templates select="/rss//item[position() &lt; 10]"/>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 	<script>
 	  <xsl:text disable-output-escaping="yes">
 	    <![CDATA[

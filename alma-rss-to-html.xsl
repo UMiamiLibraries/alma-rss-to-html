@@ -49,7 +49,7 @@
                         }
                     }
 
-		    var bookCoverUrl = "http://sp.library.miami.edu/external_scripts/newitems/um-book-cover/bookcover.php?syndetics_client_code=miamih&image_size=LC&isbn=" + isbn;
+		    var bookCoverUrl = "http://sp.library.miami.edu/external_scripts/newitems/bookcover.php?syndetics_client_code=miamih&image_size=LC&isbn=" + isbn;
 		    
 		    $.get(bookCoverUrl, function(data) {
 			var imgCover = document.createElement('img');

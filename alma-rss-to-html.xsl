@@ -20,6 +20,27 @@
         },
         init: function () {
             myBookList.bindUiActions();
+
+            var flipScript = "../assets/js/jquery.flip.min.js";
+            var flipStyles = "../assets/css/shared/booklist.css";
+        
+            $.getScript(flipScript, function(){
+               $("head").append("<script src='" + flipScript + "'>");
+               $("head").append("<link href='" + flipStyles + "' rel='stylesheet' type='text/css' media='screen'>");
+
+               
+               $(".flip-btn").click(function(){
+                 var flipCard = $(this).parent();
+                  $(flipCard).flip('toggle');
+                });
+
+               $(".item").flip({
+                  axis: 'y',
+                  trigger: 'manual'
+                }); 
+
+            });      
+
         },
         iterateUrls: function () {
             var elements = document.querySelectorAll('[property="url"]');
@@ -48,8 +69,7 @@
 		    $.get(bookCoverUrl, function(data) {
 			var imgCover = document.createElement('img');
 			imgCover.setAttribute('src', data);
-			console.log(grandFather);
-			grandFather.prepend(imgCover);
+			grandFather.find(".item-image").prepend(imgCover);
 		    });
 		});
 	    });
@@ -62,100 +82,108 @@ var bookList = bookList();
 bookList.init();
 	    ]]>
 	  </xsl:text>
-	</script>
-	
+	</script>	
    
   </xsl:template>
   <xsl:template match="/rss//item[position() &lt; 10]">
     <xsl:choose>
       <xsl:when test="./mattype/text()='BOOK'">
-        <div class="item" vocab="http://schema.org/" typeof="Book">
-          <ul class="item-info">
-            <li class="item-title">
-              <a>
-                <xsl:attribute name="property">url</xsl:attribute>
-                <xsl:attribute name="href">
-                  <xsl:value-of select="./link"/>
-                </xsl:attribute>
-                <span>
-                  <xsl:attribute name="property">name</xsl:attribute>
-                  <xsl:value-of select="./title"/>
-                </span>
-              </a>
-            </li>
-            <li class="item-author">
-              <xsl:attribute name="property">author</xsl:attribute>
-              <xsl:value-of select="./author"/>
-            </li>
-            <li class="item-description">
+        <div id="new_books_container">
+          <div class="item" vocab="http://schema.org/" typeof="Book">
+              <div class="flip-btn">click me</div>
+              
+              <div class="front">
+                  <div class="item-image">hello image here</div>
+                  <div class="item-title">
+                      <a>
+                    <xsl:attribute name="property">url</xsl:attribute>
+                    <xsl:attribute name="href">
+                      <xsl:value-of select="./link"/>
+                    </xsl:attribute>
+                    <span>
+                      <xsl:attribute name="property">name</xsl:attribute>
+                      <xsl:value-of select="./title"/>
+                    </span>
+                  </a>
+                  </div>
+              </div> <!--end front--> 
 
-              <xsl:attribute name="property">description</xsl:attribute>
-              <xsl:value-of select="./description"/>
-            </li>
-            <li class="item-language">
-              <xsl:attribute name="property">inLanguage</xsl:attribute>
+              <div class="back">
+                   <ul class="item-info">
+                      <li class="item-author">
+                        <xsl:attribute name="property">author</xsl:attribute>
+                        <xsl:value-of select="./author"/>
+                      </li>
+                      <li class="item-description">
+                        <xsl:attribute name="property">description</xsl:attribute>
+                        <xsl:value-of select="./description"/>
+                      </li>
+                      <li class="item-language">
+                        <xsl:attribute name="property">inLanguage</xsl:attribute>
 
-              <xsl:value-of select="language"/>
-            </li>
-            <li class="item-format">
-              <xsl:value-of select="./format"/>
-            </li>
-            <li class="item-type">
-              <xsl:value-of select="./mattype"/>
-            </li>
-            <li class="item-pubdate">
-              <xsl:attribute name="property">datePublished</xsl:attribute>
-              <xsl:value-of select="./pubDate"/>
-            </li>
-            <li class="item-arrivaldate">
-              <xsl:value-of select="./arrivalDate"/>
-            </li>
-          </ul>
+                        <xsl:value-of select="language"/>
+                      </li>
+                      <li class="item-format">
+                        <xsl:value-of select="./format"/>
+                      </li>
+                      <li class="item-type">
+                        <xsl:value-of select="./mattype"/>
+                      </li>
+                      <li class="item-arrivaldate">
+                        <xsl:value-of select="./arrivalDate"/>
+                      </li>
+                  </ul>
+              </div><!--end back-->
+          </div>
         </div>
       </xsl:when>
       <xsl:otherwise>
-        <div class="item" vocab="http://schema.org/" typeof="CreativeWork">
-          <ul class="item-info">
-            <li class="item-title">
-              <a>
-                <xsl:attribute name="property">url</xsl:attribute>
-                <xsl:attribute name="href">
-                  <xsl:value-of select="./link"/>
-                </xsl:attribute>
-                <span>
-                  <xsl:attribute name="property">name</xsl:attribute>
-                  <xsl:value-of select="./title"/>
-                </span>
-              </a>
-            </li>
-            <li class="item-author">
-              <xsl:attribute name="property">author</xsl:attribute>
-              <xsl:value-of select="./author"/>
-            </li>
-            <li class="item-description">
+        <div id="new_books_container">
+          <div class="item" vocab="http://schema.org/" typeof="CreativeWork">
+            <div class="flip-btn">click me</div>
 
-              <xsl:attribute name="property">description</xsl:attribute>
-              <xsl:value-of select="./description"/>
-            </li>
-            <li class="item-language">
-              <xsl:attribute name="property">inLanguage</xsl:attribute>
+             <div class="front">
+                  <div class="item-image">hello image here</div>
+                  <div class="item-title">
+                      <a>
+                        <xsl:attribute name="property">url</xsl:attribute>
+                        <xsl:attribute name="href">
+                          <xsl:value-of select="./link"/>
+                        </xsl:attribute>
+                        <span>
+                          <xsl:attribute name="property">name</xsl:attribute>
+                          <xsl:value-of select="./title"/>
+                        </span>
+                      </a>
+                  </div>
+              </div> <!--end front-->
 
-              <xsl:value-of select="language"/>
-            </li>
-            <li class="item-format">
-              <xsl:value-of select="./format"/>
-            </li>
-            <li class="item-type">
-              <xsl:value-of select="./mattype"/>
-            </li>
-            <li class="item-pubdate">
-              <xsl:attribute name="property">datePublished</xsl:attribute>
-              <xsl:value-of select="./pubDate"/>
-            </li>
-            <li class="item-arrivaldate">
-              <xsl:value-of select="./arrivalDate"/>
-            </li>
-          </ul>
+              <div class="back">
+                <ul class="item-info">              
+                    <li class="item-author">
+                      <xsl:attribute name="property">author</xsl:attribute>
+                      <xsl:value-of select="./author"/>
+                    </li>
+                    <li class="item-description">
+                      <xsl:attribute name="property">description</xsl:attribute>
+                      <xsl:value-of select="./description"/>
+                    </li>
+                    <li class="item-language">                
+                      <xsl:attribute name="property">inLanguage</xsl:attribute>
+                      <xsl:value-of select="language"/>
+                    </li>
+                    <li class="item-format">
+                      <xsl:value-of select="./format"/>
+                    </li>
+                    <li class="item-type">
+                      <xsl:value-of select="./mattype"/>
+                    </li>
+                    <li class="item-arrivaldate">
+                      <xsl:value-of select="./arrivalDate"/>
+                    </li>
+              </ul>
+              </div><!--end back--> 
+          </div>
         </div>
       </xsl:otherwise>
     </xsl:choose>

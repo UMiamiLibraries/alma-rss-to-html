@@ -3,7 +3,7 @@
 		xmlns:xs="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="xs" version="1.0">
   <xsl:template match="/">
   
-        <xsl:apply-templates select="/rss//item[position() &lt; 10]"/>
+        <xsl:apply-templates select="/rss//item[position() &lt; 100]"/>
 	<script>
 	  <xsl:text disable-output-escaping="yes">
 	    <![CDATA[
@@ -66,7 +66,7 @@ bookList.init();
 	
    
   </xsl:template>
-  <xsl:template match="/rss//item[position() &lt; 10]">
+  <xsl:template match="/rss//item[position() &lt; 100]">
     <xsl:choose>
       <xsl:when test="./mattype/text()='BOOK'">
         <div class="item" vocab="http://schema.org/" typeof="Book">

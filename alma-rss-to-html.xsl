@@ -70,6 +70,7 @@
 			var imgCover = document.createElement('img');
 			imgCover.setAttribute('src', data);
 			grandFather.find(".item-image").prepend(imgCover);
+      $("#new_books_container .item-image").addClass("remove-placeholder-cover");
 		    });
 		});
 	    });
@@ -90,10 +91,10 @@ bookList.init();
       <xsl:when test="./mattype/text()='BOOK'">
         <div id="new_books_container">
           <div class="item" vocab="http://schema.org/" typeof="Book">
-              <div class="flip-btn">click me</div>
+              <div class="flip-btn"><i class="fa fa-info" aria-hidden="true"></i></div>
               
               <div class="front">
-                  <div class="item-image">hello image here</div>
+                  <div class="item-image"></div>
                   <div class="item-title">
                       <a>
                     <xsl:attribute name="property">url</xsl:attribute>

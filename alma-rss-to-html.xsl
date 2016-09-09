@@ -140,10 +140,10 @@ bookList.init();
       <xsl:otherwise>
         <div id="new_books_container">
           <div class="item" vocab="http://schema.org/" typeof="CreativeWork">
-            <div class="flip-btn">click me</div>
+            <div class="flip-btn"><i class="fa fa-info" aria-hidden="true"></i></div>
 
              <div class="front">
-                  <div class="item-image">hello image here</div>
+                  <div class="item-image"></div>
                   <div class="item-title">
                       <a>
                         <xsl:attribute name="property">url</xsl:attribute>

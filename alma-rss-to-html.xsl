@@ -14,12 +14,12 @@
           </div>
 
           <div id="new_books">
-            <xsl:apply-templates select="/rss//item[position() &lt; 10]"/>
+            <xsl:apply-templates select="/rss//item[position() &lt; 37]"/>
           </div> <!--end #new_books-->
       </div><!--end #new_books_container-->
    
   </xsl:template>  
-  <xsl:template match="/rss//item[position() &lt; 10]">
+  <xsl:template match="/rss//item[position() &lt; 37]">
       <div>
           <xsl:attribute name="class">element-item flip-container</xsl:attribute>
           <xsl:attribute name="data-author"><xsl:value-of select="./author"/></xsl:attribute>
@@ -30,7 +30,7 @@
           <div class="flip-btn" title="Click for more details">I</div>
           <div class="item flipper" vocab="http://schema.org/" typeof="Book">
               <div class="front">
-                  <div class="item-image">C</div>
+                  <div class="item-image"><span class="fake-space">fake</span> </div>
                   <div class="item-title">
                       <a>
                           <xsl:attribute name="property">url</xsl:attribute>

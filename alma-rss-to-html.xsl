@@ -188,14 +188,10 @@
       <xsl:otherwise>
           <div>
               <xsl:attribute name="class">element-item flip-container</xsl:attribute>
-                       <xsl:attribute name="data-author">author</xsl:attribute>
-                       <xsl:value-of select="./author"/>
-                       <xsl:attribute name="data-title">name</xsl:attribute>
-                       <xsl:value-of select="./title"/>
-                       <xsl:attribute name="data-language">inLanguage</xsl:attribute>
-                       <xsl:value-of select="language"/>
-                       <xsl:attribute name="data-arrivaldate">arrivalDate</xsl:attribute>
-                       <xsl:value-of select="./arrivalDate"/>
+                       <xsl:attribute name="data-author"><xsl:value-of select="./author"/></xsl:attribute>                       
+                       <xsl:attribute name="data-title"><xsl:value-of select="./title"/></xsl:attribute>                       
+                       <xsl:attribute name="data-language"><xsl:value-of select="language"/></xsl:attribute>                       
+                       <xsl:attribute name="data-arrivaldate"><xsl:value-of select="./arrivalDate"/></xsl:attribute>                       
 
             <div class="flip-btn" title="Click for more details"><i class="fa fa-info" aria-hidden="true"></i></div>
             <div class="item flipper" vocab="http://schema.org/" typeof="Book">

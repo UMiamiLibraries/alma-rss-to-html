@@ -3,7 +3,7 @@
 		xmlns:xs="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="xs" version="1.0">
   <xsl:template match="/">
       <div id="new_books_container">
-          <div class="books-loading"><i class="fa fa-spinner" aria-hidden="true"></i><br />Loading</div>
+          
 
           <div id="sorts" class="sort-by-button-group">
               <button data-sort-value="original-order">Original Order</button>
@@ -143,8 +143,8 @@
                        <xsl:attribute name="data-title"><xsl:value-of select="./title"/></xsl:attribute>                       
                        <xsl:attribute name="data-language"><xsl:value-of select="language"/></xsl:attribute>                       
                        <xsl:attribute name="data-arrivaldate"><xsl:value-of select="./arrivalDate"/></xsl:attribute> 
-                       
-            <div class="flip-btn" title="Click for more details"><i class="fa fa-info" aria-hidden="true"></i></div>
+
+            <div class="flip-btn" title="Click for more details">I</div>
             <div class="item flipper" vocab="http://schema.org/" typeof="Book">
                 <div class="front">
                     <div class="item-image"></div>
@@ -199,7 +199,7 @@
                        <xsl:attribute name="data-language"><xsl:value-of select="language"/></xsl:attribute>                       
                        <xsl:attribute name="data-arrivaldate"><xsl:value-of select="./arrivalDate"/></xsl:attribute>                       
 
-            <div class="flip-btn" title="Click for more details"><i class="fa fa-info" aria-hidden="true"></i></div>
+            <div class="flip-btn" title="Click for more details">I</div>
             <div class="item flipper" vocab="http://schema.org/" typeof="CreativeWork">
                 <div class="front">
                     <div class="item-image"></div>

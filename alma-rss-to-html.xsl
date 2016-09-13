@@ -30,7 +30,7 @@
           <div class="flip-btn" title="Click for more details">I</div>
           <div class="item flipper" vocab="http://schema.org/" typeof="Book">
               <div class="front">
-                  <div class="item-image">&nbsp;</div>
+                  <div class="item-image">C</div>
                   <div class="item-title">
                       <a>
                           <xsl:attribute name="property">url</xsl:attribute>

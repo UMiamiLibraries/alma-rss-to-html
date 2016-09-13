@@ -137,13 +137,14 @@
   <xsl:template match="/rss//item[position() &lt; 10]">
     <xsl:choose>
       <xsl:when test="./mattype/text()='BOOK'">
-      	  <xsl:attribute name="class">element-item flip-container</xsl:attribute>
+      	 
+        <div class="element-item flip-container">
+        	 <xsl:attribute name="class">element-item flip-container</xsl:attribute>
                        <xsl:attribute name="data-author"><xsl:value-of select="./author"/></xsl:attribute>                       
                        <xsl:attribute name="data-title"><xsl:value-of select="./title"/></xsl:attribute>                       
                        <xsl:attribute name="data-language"><xsl:value-of select="language"/></xsl:attribute>                       
                        <xsl:attribute name="data-arrivaldate"><xsl:value-of select="./arrivalDate"/></xsl:attribute>                       
 
-        <div class="element-item flip-container">
             <div class="flip-btn" title="Click for more details"><i class="fa fa-info" aria-hidden="true"></i></div>
             <div class="item flipper" vocab="http://schema.org/" typeof="Book">
                 <div class="front">

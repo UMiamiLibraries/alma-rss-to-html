@@ -186,7 +186,17 @@
         </div>
       </xsl:when>
       <xsl:otherwise>
-          <div class="element-item flip-container" data-author="<xsl:value-of select='./author'/>" data-arrivaldate="<xsl:value-of select='./arrivalDate'/>" data-language="<xsl:value-of select='language'/>" data-title="<xsl:value-of select='./title'/>">
+          <div>
+              <xsl:attribute name="class">element-item flip-container</xsl:attribute>
+                       <xsl:attribute name="data-author">author</xsl:attribute>
+                       <xsl:value-of select="./author"/>
+                       <xsl:attribute name="data-title">name</xsl:attribute>
+                       <xsl:value-of select="./title"/>
+                       <xsl:attribute name="data-language">inLanguage</xsl:attribute>
+                       <xsl:value-of select="language"/>
+                       <xsl:attribute name="data-arrivaldate">arrivalDate</xsl:attribute>
+                       <xsl:value-of select="./arrivalDate"/>
+
             <div class="flip-btn" title="Click for more details"><i class="fa fa-info" aria-hidden="true"></i></div>
             <div class="item flipper" vocab="http://schema.org/" typeof="Book">
                 <div class="front">

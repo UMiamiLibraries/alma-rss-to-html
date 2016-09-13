@@ -29,51 +29,7 @@
                        <xsl:attribute name="data-language"><xsl:value-of select="language"/></xsl:attribute>                       
                        <xsl:attribute name="data-arrivaldate"><xsl:value-of select="./arrivalDate"/></xsl:attribute> 
 
-            <div class="flip-btn" title="Click for more details">I</div>
-            <div class="item flipper" vocab="http://schema.org/" typeof="Book">
-                <div class="front">
-                    <div class="item-image"></div>
-                    <div class="item-title">
-                       <a>
-                        <xsl:attribute name="property">url</xsl:attribute>
-                        <xsl:attribute name="href">
-                          <xsl:value-of select="./link"/>
-                        </xsl:attribute>
-                        <span class="item-title-text">
-                          <xsl:attribute name="property">name</xsl:attribute>
-                          <xsl:value-of select="./title"/>
-                        </span>
-                      </a>
-                    </div>
-                </div><!--end front-->
-
-                <div class="back">
-                    <ul class="item-info">
-                        <li class="item-author">
-                          <xsl:attribute name="property">author</xsl:attribute>
-                          <xsl:value-of select="./author"/>
-                        </li>
-                        <li class="item-description">
-                          <xsl:attribute name="property">description</xsl:attribute>
-                          <xsl:value-of select="./description"/>
-                        </li>
-                        <li class="item-language">
-                          <xsl:attribute name="property">inLanguage</xsl:attribute>
-
-                          <xsl:value-of select="language"/>
-                        </li>
-                        <li class="item-format">
-                          <xsl:value-of select="./format"/>
-                        </li>
-                        <li class="item-type">
-                          <xsl:value-of select="./mattype"/>
-                        </li>
-                        <li class="item-arrivaldate">
-                          <xsl:value-of select="./arrivalDate"/>
-                        </li>
-                    </ul>
-                </div><!--end back-->
-            </div>
+            
         </div>
       </xsl:when>
       <xsl:otherwise>

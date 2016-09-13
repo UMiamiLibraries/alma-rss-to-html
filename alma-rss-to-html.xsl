@@ -20,73 +20,58 @@
    
   </xsl:template>  
   <xsl:template match="/rss//item[position() &lt; 10]">
-    <xsl:choose>
-      <xsl:when test="./mattype/text()='BOOK'">
-        <div>
-              <xsl:attribute name="class">element-item flip-container</xsl:attribute>
-                       <xsl:attribute name="data-author"><xsl:value-of select="./author"/></xsl:attribute>                       
-                       <xsl:attribute name="data-title"><xsl:value-of select="./title"/></xsl:attribute>                       
-                       <xsl:attribute name="data-language"><xsl:value-of select="language"/></xsl:attribute>                       
-                       <xsl:attribute name="data-arrivaldate"><xsl:value-of select="./arrivalDate"/></xsl:attribute> 
+      <div>
+          <xsl:attribute name="class">element-item flip-container</xsl:attribute>
+          <xsl:attribute name="data-author"><xsl:value-of select="./author"/></xsl:attribute>
+          <xsl:attribute name="data-title"><xsl:value-of select="./title"/></xsl:attribute>
+          <xsl:attribute name="data-language"><xsl:value-of select="language"/></xsl:attribute>
+          <xsl:attribute name="data-arrivaldate"><xsl:value-of select="./arrivalDate"/></xsl:attribute>
 
-            
-        </div>
-      </xsl:when>
-      <xsl:otherwise>
-          <div>
-              <xsl:attribute name="class">element-item flip-container</xsl:attribute>
-                       <xsl:attribute name="data-author"><xsl:value-of select="./author"/></xsl:attribute>                       
-                       <xsl:attribute name="data-title"><xsl:value-of select="./title"/></xsl:attribute>                       
-                       <xsl:attribute name="data-language"><xsl:value-of select="language"/></xsl:attribute>                       
-                       <xsl:attribute name="data-arrivaldate"><xsl:value-of select="./arrivalDate"/></xsl:attribute>                       
-
-            <div class="flip-btn" title="Click for more details">I</div>
-            <div class="item flipper" vocab="http://schema.org/" typeof="CreativeWork">
-                <div class="front">
-                    <div class="item-image"></div>
-                    <div class="item-title">
-                       <a>
-                        <xsl:attribute name="property">url</xsl:attribute>
-                        <xsl:attribute name="href">
-                          <xsl:value-of select="./link"/>
-                        </xsl:attribute>
-                        <span class="item-title-text">
-                          <xsl:attribute name="property">name</xsl:attribute>
-                          <xsl:value-of select="./title"/>
-                        </span>
+          <div class="flip-btn" title="Click for more details">I</div>
+          <div class="item flipper" vocab="http://schema.org/" typeof="Book">
+              <div class="front">
+                  <div class="item-image"></div>
+                  <div class="item-title">
+                      <a>
+                          <xsl:attribute name="property">url</xsl:attribute>
+                          <xsl:attribute name="href">
+                              <xsl:value-of select="./link"/>
+                          </xsl:attribute>
+                          <span class="item-title-text">
+                              <xsl:attribute name="property">name</xsl:attribute>
+                              <xsl:value-of select="./title"/>
+                          </span>
                       </a>
-                    </div>
-                </div><!--end front-->
+                  </div>
+              </div><!--end front-->
 
-                <div class="back">
-                    <ul class="item-info">
-                        <li class="item-author">
+              <div class="back">
+                  <ul class="item-info">
+                      <li class="item-author">
                           <xsl:attribute name="property">author</xsl:attribute>
                           <xsl:value-of select="./author"/>
-                        </li>
-                        <li class="item-description">
+                      </li>
+                      <li class="item-description">
                           <xsl:attribute name="property">description</xsl:attribute>
                           <xsl:value-of select="./description"/>
-                        </li>
-                        <li class="item-language">
+                      </li>
+                      <li class="item-language">
                           <xsl:attribute name="property">inLanguage</xsl:attribute>
 
                           <xsl:value-of select="language"/>
-                        </li>
-                        <li class="item-format">
+                      </li>
+                      <li class="item-format">
                           <xsl:value-of select="./format"/>
-                        </li>
-                        <li class="item-type">
+                      </li>
+                      <li class="item-type">
                           <xsl:value-of select="./mattype"/>
-                        </li>
-                        <li class="item-arrivaldate">
+                      </li>
+                      <li class="item-arrivaldate">
                           <xsl:value-of select="./arrivalDate"/>
-                        </li>
-                    </ul>
-                </div><!--end back-->
-            </div>
-        </div>
-      </xsl:otherwise>
-    </xsl:choose>
+                      </li>
+                  </ul>
+              </div><!--end back-->
+          </div>
+      </div>
   </xsl:template>
 </xsl:stylesheet>

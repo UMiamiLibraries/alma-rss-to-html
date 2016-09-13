@@ -200,7 +200,7 @@
                        <xsl:attribute name="data-arrivaldate"><xsl:value-of select="./arrivalDate"/></xsl:attribute>                       
 
             <div class="flip-btn" title="Click for more details"><i class="fa fa-info" aria-hidden="true"></i></div>
-            <div class="item flipper" vocab="http://schema.org/" typeof="Book">
+            <div class="item flipper" vocab="http://schema.org/" typeof="CreativeWork">
                 <div class="front">
                     <div class="item-image"></div>
                     <div class="item-title">

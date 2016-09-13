@@ -27,7 +27,7 @@
           <xsl:attribute name="data-language"><xsl:value-of select="language"/></xsl:attribute>
           <xsl:attribute name="data-arrivaldate"><xsl:value-of select="./arrivalDate"/></xsl:attribute>
 
-          <div class="flip-btn" title="Click for more details">I</div>
+          <div class="flip-btn" title="Click for more details"><i class="fa fa-info"><span class="fake-space">fake</span></i></div>
           <div class="item flipper" vocab="http://schema.org/" typeof="Book">
               <div class="front">
                   <div class="item-image"><span class="fake-space">fake</span> </div>

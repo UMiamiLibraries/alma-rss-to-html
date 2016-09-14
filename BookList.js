@@ -43,7 +43,9 @@ function bookList() {
                             author: '[data-author]',
                             arrivaldate: '[data-arrivaldate]',
                             language: '[data-language]'
-                        }
+                        },
+                       sortBy: 'arrivaldate',
+                       sortAscending: 'false'
                     });
 
                     $('.books-loading').hide();
@@ -55,6 +57,8 @@ function bookList() {
                     var sortByValue = $(this).attr('data-sort-value');
                     $('#new_books').isotope({ sortBy: sortByValue});
                     console.log('click');
+                    $('#sorts button').removeClass('active-sort');
+                     $(this).addClass('active-sort');
                 });
 
                 //flip

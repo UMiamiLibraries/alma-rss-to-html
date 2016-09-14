@@ -3,11 +3,10 @@
 		xmlns:xs="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="xs" version="1.0">
   <xsl:template match="/">
       <div id="new_books_container">
-          
+        <div class="books-loading"><i class="fa fa-spinner" aria-hidden="true"><span class="fake-space">fake</span></i><br />Loading</div>          
 
           <div id="sorts" class="sort-by-button-group">
-              <button data-sort-value="original-order">Original Order</button>
-              <button data-sort-value="arrivaldate">Arrival Date</button>
+              <button data-sort-value="arrivaldate" class="active-sort">Arrival Date</button>
               <button data-sort-value="title">Title</button>
               <button data-sort-value="author">Author</button>
               <button data-sort-value="language">Language</button>
@@ -19,6 +18,7 @@
       </div><!--end #new_books_container-->
    
   </xsl:template>  
+
   <xsl:template match="/rss//item[position() &lt; 37]">
       <div>
           <xsl:attribute name="class">element-item flip-container</xsl:attribute>
@@ -30,7 +30,7 @@
           <div class="flip-btn" title="Click for more details"><i class="fa fa-info"><span class="fake-space">fake</span></i></div>
           <div class="item flipper" vocab="http://schema.org/" typeof="Book">
               <div class="front">
-                  <div class="item-image"><span class="fake-space">fake</span> </div>
+                  <div class="item-image"><span class="fake-space">fake</span></div>
                   <div class="item-title">
                       <a>
                           <xsl:attribute name="property">url</xsl:attribute>
@@ -56,8 +56,7 @@
                           <xsl:value-of select="./description"/>
                       </li>
                       <li class="item-language">
-                          <xsl:attribute name="property">inLanguage</xsl:attribute>
-
+                          <xsl:attribute name="property">inLanguage</xsl:attribute>  
                           <xsl:value-of select="language"/>
                       </li>
                       <li class="item-format">

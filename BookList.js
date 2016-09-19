@@ -148,6 +148,24 @@ function bookList() {
                 grandFather.find(".item-image").prepend(imgCover);
                 $("#new_books_container .item-image").addClass("remove-placeholder-cover");
             });
+
+            //set fallback image
+            $( document ).ready(function() {
+
+                var cover = $(".item-image img");
+                var altCover = "../../assets/images/blank-cover.png";
+
+                $('.item-image img').each(function() {
+
+                    if($(this).attr('src') == "") {
+                        console.log("no cover");
+                        $(this).attr("src", altCover);
+                    } else {
+                        console.log("cover found");
+                    }
+
+                });
+            });
         },
         getBookMetadata : function (almaId, grandFather) {
             var newUrl = 'http://sp.library.miami.edu/external_scripts/newitems/pnx.php?alma_id=' + almaId;

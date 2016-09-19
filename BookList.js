@@ -111,6 +111,7 @@ function bookList() {
             $.ajax({
                 url:url,
                 type:'HEAD',
+                async: false,
                 error: function()
                 {
                     result =false;

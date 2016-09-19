@@ -12,80 +12,97 @@ function bookList() {
         bindUiActions: function () {
             myBookList.iterateUrls();
         },
-        init: function () {
-            myBookList.bindUiActions();
+            init: function () {
+                myBookList.bindUiActions();
 
-            var isotopeScript = "http://unpkg.com/isotope-layout@3.0.1/dist/isotope.pkgd.min.js";
+                var isotopeScript = "http://unpkg.com/isotope-layout@3.0.1/dist/isotope.pkgd.min.js";
 
-            //get script
-            $.getScript(isotopeScript, function(){
-                $("head").append("<script src='" + isotopeScript + "'>");
+                //get script
+                $.getScript(isotopeScript, function(){
+                    $("head").append("<script src='" + isotopeScript + "'>");
 
-                var $win = $(window);
+                    var $win = $(window);
 
-                //set timeout to remove preloader
-                setTimeout(function(){
-                    $('#sorts').css('visibility', 'visible');
-                    $('#new_books').css('visibility', 'visible');
-                }, 1000);
+                    //set timeout to remove preloader
+                    setTimeout(function(){
+                        $('#sorts').css('visibility', 'visible');
+                        $('#new_books').css('visibility', 'visible');
+                    }, 1000);
 
-                $win.on('load', function(){
+                    $win.on('load', function(){
 
-                    // init Isotope
-                    $('#new_books').isotope({
-                        itemSelector: '.element-item',
-                        layoutMode: 'fitRows',
-                        fitRows: {
-                            gutter: 0
-                        },
-                        getSortData: {
-                            title: '[data-title]',
-                            author: '[data-author]',
-                            arrivaldate: '[data-arrivaldate]',
-                            language: '[data-language]'
-                        },
-                       sortBy: 'arrivaldate',
-                       sortAscending: false
+                        // init Isotope
+                        $('#new_books').isotope({
+                            itemSelector: '.element-item',
+                            layoutMode: 'fitRows',
+                            fitRows: {
+                                gutter: 0
+                            },
+                            getSortData: {
+                                title: '[data-title]',
+                                author: '[data-author]',
+                                arrivaldate: '[data-arrivaldate]',
+                                language: '[data-language]'
+                            },
+                            sortBy: 'arrivaldate',
+                            sortAscending: false
+                        });
+
+                        $('.books-loading').hide();
+
                     });
 
-                    $('.books-loading').hide();
+                    // sort items on button click
+                    $('#sorts').on( 'click', 'button', function() {
+                        var sortByValue = $(this).attr('data-sort-value');
+                        $('#new_books').isotope({ sortBy: sortByValue});
+                        console.log('click');
+                        $('#sorts button').removeClass('active-sort');
+                        $(this).addClass('active-sort');
+                    });
 
-                });
+                    //flip
+                    $('.flip-btn').on( 'click', function() {
+                        var flipCard = $(this).parent();
+                        $(flipCard).toggleClass('hover');
+                    });
 
-                // sort items on button click
-                $('#sorts').on( 'click', 'button', function() {
-                    var sortByValue = $(this).attr('data-sort-value');
-                    $('#new_books').isotope({ sortBy: sortByValue});
-                    console.log('click');
-                    $('#sorts button').removeClass('active-sort');
-                     $(this).addClass('active-sort');
-                });
+                    //show author labels when sorting by author
+                    $( document ).ready(function() {
+                        var authorBtn = $('button[data-sort-value="author"]');
 
-                //flip
-                $('.flip-btn').on( 'click', function() {
-                    var flipCard = $(this).parent();
-                    $(flipCard).toggleClass('hover');
-                });
+                        if (authorBtn.hasClass('active-sort')) {
+                            $('#new_books_container .label-author').show();
+                            $('#new_books_container .label-title').show();
+                            $('#new_books_container .item-title').hide();
+                            $('#new_books_container .item-author').hide();
+                        }
+                        else {
+                            $('#new_books_container .label-author').hide();
+                            $('#new_books_container .label-title').hide();
+                            $('#new_books_container .item-title').show();
+                            $('#new_books_container .item-author').show();
+                        }
+                    });
 
-                //set fallback image
-                $( document ).ready(function() {  
-                   
-                   var cover = $(".item-image img");
-                   var altCover = "../../assets/images/blank-cover.png";
+                    //placeholder for empty author
+                    $('#new_books_container .item-author').each(function() {
+                        if($(this).is(':empty')){
+                            $('#new_books_container .item-author').append('<span>[Click for details]</span>');
+                        }
+                    });
 
-                   $('.item-image img').each(function() {
+                    $('#new_books_container .label-author').each(function() {
+                        if($(this).is(':empty')){
+                            $('#new_books_container .label-author').append('<span>[Click for details]</span>');
+                        }
+                    });
 
-                       if($(this).attr('src') == "") {
-                           console.log("no cover");
-                           $(this).attr("src", altCover);
-                       } else {
-                           console.log("cover found");
-                       }
 
-                   });
-                });
 
-            }); //end .getScript
+                }); //end .getScript
+
+            
 
         },
         iterateUrls: function () {

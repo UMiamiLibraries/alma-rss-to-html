@@ -106,12 +106,19 @@ function bookList() {
 
         },
         urlExists: function (url){
+            var result = true;
 
-                var http = new XMLHttpRequest();
-                http.open('HEAD', url, false);
-                http.send();
-                return http.status!=404;
+            $.ajax({
+                url:url,
+                type:'HEAD',
+                error: function()
+                {
+                    result =false;
+                }
+            });
 
+            debugger;
+            return result;
         },
         iterateUrls: function () {
             var elements = document.querySelectorAll('[property="url"]');

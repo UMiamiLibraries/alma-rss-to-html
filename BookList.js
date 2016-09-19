@@ -212,8 +212,9 @@ function bookList() {
                         "syndetics_client_code": '',
                         "isbn": isbn,
                         "image_size": '',
-                        "update_almaIds": true,
-                        'book_cover_url': bookCoverUrl
+                        "update_almaIds": 'true',
+                        "book_cover_url": bookCoverUrl,
+                        "alma_id": almaId
                     },
                     dataType: "text"
                 });

@@ -68,6 +68,8 @@ function bookList() {
                 });
 
 
+
+
             }); //end .getScript
 
         },
@@ -101,6 +103,8 @@ function bookList() {
                         imgCover.setAttribute('src', data);
                         grandFather.find(".item-image").prepend(imgCover);
                         $("#new_books_container .item-image").addClass("remove-placeholder-cover");
+
+                        
                     });
                 });
 

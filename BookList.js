@@ -118,3 +118,20 @@ function bookList() {
 
 var bookList = bookList();
 bookList.init();
+
+$( document ).ready(function() {
+   //set fallback image
+   var cover = $(".item-image img");
+   var altCover = "http://lorempixel.com/200/215";
+
+   $('.item-image img').each(function() {
+
+       if($(this).attr('src') == "") {
+           console.log("no cover");
+           $(this).attr("src", altCover);
+       } else {
+           console.log("cover found");
+       }
+
+   });
+});

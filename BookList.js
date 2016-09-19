@@ -85,50 +85,84 @@ function bookList() {
                    });
                 });
 
-
-
-
             }); //end .getScript
 
         },
-
         iterateUrls: function () {
             var elements = document.querySelectorAll('[property="url"]');
+            var almaJSON = '';
+
+            $.ajax({
+                type: "GET",
+                url: 'http://sp.library.miami.edu/external_scripts/newitems/cover_cache/alma_ids.json',
+                dataType: "text",
+                async: false,
+                success: function (data) {
+                    almaJSON = $.parseJSON(data);
+                }
+            });
+
+            debugger;
 
             $('.item-title a').each(function(i) {
                 var url = $(this).attr('href');
                 var grandFather = $(this).parent().parent();
                 var split = url.split(",");
                 var almaId = split[split.length - 1];
-                var newUrl = 'http://sp.library.miami.edu/external_scripts/newitems/pnx.php?alma_id=' + almaId;
+                var bookCoverUrl = '';
 
-                $.get(newUrl, function(data) {
+                if (almaJSON.length != 0) {
+                    debugger;
+                    if (almaJSON.hasOwnProperty(almaId)) {
+                        bookCoverUrl = almaJSON[almaId].book_cover;
+                        myBookList.setBookCover(grandFather, bookCoverUrl);
+                    } else {
+                        myBookList.getBookMetadata(almaId, grandFather);
+                    }
+                }else{
+                    myBookList.getBookMetadata(almaId, grandFather);
+                }
+            });
+        },
+        setBookCover : function (grandFather, bookCoverUrl) {
+            $.get(bookCoverUrl, function(data) {
+                var imgCover = document.createElement('img');
+                imgCover.setAttribute('src', data);
+                grandFather.find(".item-image").prepend(imgCover);
+                $("#new_books_container .item-image").addClass("remove-placeholder-cover");
+            });
+        },
+        getBookMetadata : function (almaId, grandFather) {
+            var newUrl = 'http://sp.library.miami.edu/external_scripts/newitems/pnx.php?alma_id=' + almaId;
+            $.get(newUrl, function (data) {
 
-                    var isbn = $.parseJSON(data).search.isbn;
-                    if( Array.isArray(isbn)) {
-                        for (var j = 0; j < isbn.length; j++){
-                            if (isbn[j].length === 13){
-                                isbn = isbn [j];
-                                break;
-                            }
+                var isbn = $.parseJSON(data).search.isbn;
+                if (Array.isArray(isbn)) {
+                    for (var j = 0; j < isbn.length; j++) {
+                        if (isbn[j].length === 13) {
+                            isbn = isbn [j];
+                            break;
                         }
                     }
+                }
 
-                    var bookCoverUrl = "http://sp.library.miami.edu/external_scripts/newitems/bookcover.php?syndetics_client_code=miamih&image_size=LC&isbn=" + isbn;
+                var bookCoverUrl = "http://sp.library.miami.edu/external_scripts/newitems/bookcover.php?syndetics_client_code=miamih&image_size=LC&isbn=" + isbn;
+                myBookList.setBookCover(grandFather, bookCoverUrl);
 
-                    $.get(bookCoverUrl, function(data) {
-                        var imgCover = document.createElement('img');
-                        imgCover.setAttribute('src', data);
-                        imgCover.setAttribute('class', 'webservice-cover');
-                        grandFather.find(".item-image").prepend(imgCover);
-                        $("#new_books_container .item-image").addClass("remove-placeholder-cover");
-
-                        
-                    });
+                $.ajax({
+                    type: "GET",
+                    url: 'http://sp.library.miami.edu/external_scripts/newitems/bookcover.php',
+                    data: {
+                        "syndetics_client_code": '',
+                        "isbn": isbn,
+                        "image_size": '',
+                        "update_almaIds": true,
+                        'book_cover_url': bookCoverUrl
+                    },
+                    dataType: "text"
                 });
 
             });
-
         }
     };
     return myBookList;

@@ -101,6 +101,7 @@ function bookList() {
                     $.get(bookCoverUrl, function(data) {
                         var imgCover = document.createElement('img');
                         imgCover.setAttribute('src', data);
+                        imgCover.setAttribute('class', 'webservice-cover');
                         grandFather.find(".item-image").prepend(imgCover);
                         $("#new_books_container .item-image").addClass("remove-placeholder-cover");
 

@@ -45,7 +45,7 @@ function bookList() {
                             language: '[data-language]'
                         },
                        sortBy: 'arrivaldate',
-                       sortAscending: 'false'
+                       sortAscending: false
                     });
 
                     $('.books-loading').hide();
@@ -65,6 +65,24 @@ function bookList() {
                 $('.flip-btn').on( 'click', function() {
                     var flipCard = $(this).parent();
                     $(flipCard).toggleClass('hover');
+                });
+
+                //set fallback image
+                $( document ).ready(function() {  
+                   
+                   var cover = $(".item-image img");
+                   var altCover = "../../assets/images/blank-cover.png";
+
+                   $('.item-image img').each(function() {
+
+                       if($(this).attr('src') == "") {
+                           console.log("no cover");
+                           $(this).attr("src", altCover);
+                       } else {
+                           console.log("cover found");
+                       }
+
+                   });
                 });
 
 
@@ -118,20 +136,3 @@ function bookList() {
 
 var bookList = bookList();
 bookList.init();
-
-$( document ).ready(function() {
-   //set fallback image
-   var cover = $(".item-image img");
-   var altCover = "http://lorempixel.com/200/215";
-
-   $('.item-image img').each(function() {
-
-       if($(this).attr('src') == "") {
-           console.log("no cover");
-           $(this).attr("src", altCover);
-       } else {
-           console.log("cover found");
-       }
-
-   });
-});

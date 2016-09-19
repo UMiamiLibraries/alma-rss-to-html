@@ -13,13 +13,13 @@
           </div>
 
           <div id="new_books">
-            <xsl:apply-templates select="/rss//item[position() &lt; 37]"/>
+            <xsl:apply-templates select="/rss//item[position() &lt; 101]"/>
           </div> <!--end #new_books-->
       </div><!--end #new_books_container-->
    
   </xsl:template>  
 
-  <xsl:template match="/rss//item[position() &lt; 37]">
+  <xsl:template match="/rss//item[position() &lt; 101]">
       <div>
           <xsl:attribute name="class">element-item flip-container</xsl:attribute>
           <xsl:attribute name="data-author"><xsl:value-of select="./author"/></xsl:attribute>

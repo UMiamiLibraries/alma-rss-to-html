@@ -105,19 +105,32 @@ function bookList() {
             
 
         },
+        urlExists: function (url){
+
+                var http = new XMLHttpRequest();
+                http.open('HEAD', url, false);
+                http.send();
+                return http.status!=404;
+
+        },
         iterateUrls: function () {
             var elements = document.querySelectorAll('[property="url"]');
             var almaJSON = '';
+            var almaCacheFileExists = myBookList.urlExists('http://sp.library.miami.edu/external_scripts/newitems/cover_cache/alma_ids.json');
 
-            $.ajax({
-                type: "GET",
-                url: 'http://sp.library.miami.edu/external_scripts/newitems/cover_cache/alma_ids.json',
-                dataType: "text",
-                async: false,
-                success: function (data) {
-                    almaJSON = $.parseJSON(data);
-                }
-            });
+            debugger;
+
+            if (almaCacheFileExists){
+                $.ajax({
+                    type: "GET",
+                    url: 'http://sp.library.miami.edu/external_scripts/newitems/cover_cache/alma_ids.json',
+                    dataType: "text",
+                    async: false,
+                    success: function (data) {
+                        almaJSON = $.parseJSON(data);
+                    }
+                });
+            }
 
             debugger;
 

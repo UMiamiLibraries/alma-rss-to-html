@@ -9,7 +9,6 @@
               <button data-sort-value="arrivaldate" class="active-sort">Arrival Date</button>
               <button data-sort-value="title">Title</button>
               <button data-sort-value="author">Author</button>
-              <button data-sort-value="language">Language</button>
           </div>
 
           <div id="new_books">
@@ -69,6 +68,15 @@
                           <xsl:value-of select="./arrivalDate"/>
                       </li>
                   </ul>
+                  <div class="cat-request">
+                    <a target="blank" title="Click for more details">
+                      <xsl:attribute name="property">url</xsl:attribute>
+                          <xsl:attribute name="href">
+                              <xsl:value-of select="./link"/>
+                          </xsl:attribute>
+                    More details
+                    </a>
+                  </div>
               </div><!--end back-->
           </div>
       </div>

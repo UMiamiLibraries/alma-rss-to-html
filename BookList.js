@@ -67,26 +67,38 @@ function bookList() {
                     $(flipCard).toggleClass('hover');
                 });
 
-                //set fallback image
-                $( document ).ready(function() {  
-                   
-                   var cover = $(".item-image img");
-                   var altCover = "../../assets/images/blank-cover.png";
-
-                   $('.item-image img').each(function() {
-
-                       if($(this).attr('src') == "") {
-                           console.log("no cover");
-                           $(this).attr("src", altCover);
-                       } else {
-                           console.log("cover found");
-                       }
-
-                   });
+                //show author labels when sorting by author
+                $( document ).ready(function() {
+                  var authorBtn = $('button[data-sort-value="author"]');
+                  
+                  if (authorBtn.hasClass('active-sort')) {
+                    $('#new_books_container .label-author').show();
+                    $('#new_books_container .label-title').show();
+                    $('#new_books_container .item-title').hide();
+                    $('#new_books_container .item-author').hide();
+                  } 
+                  else {
+                    $('#new_books_container .label-author').hide();
+                    $('#new_books_container .label-title').hide();
+                    $('#new_books_container .item-title').show();
+                    $('#new_books_container .item-author').show();
+                  }
                 });
 
+                //placeholder for empty author
+                 $('#new_books_container .item-author').each(function() {
+                    if($(this).is(':empty')){
+                      $('#new_books_container .item-author').append('<span>[Click for details]</span>');
+                    }
+                  });
 
+                 $('#new_books_container .label-author').each(function() {
+                    if($(this).is(':empty')){
+                      $('#new_books_container .label-author').append('<span>[Click for details]</span>');
+                    }
+                  });
 
+                
 
             }); //end .getScript
 
@@ -122,6 +134,25 @@ function bookList() {
                         imgCover.setAttribute('class', 'webservice-cover');
                         grandFather.find(".item-image").prepend(imgCover);
                         $("#new_books_container .item-image").addClass("remove-placeholder-cover");
+
+
+                        //set fallback image
+                        $( document ).ready(function() {  
+                           
+                               var cover = $(".item-image img");
+                               var altCover = "../../assets/images/blank-cover.png";
+
+                               $('.item-image img').each(function() {
+
+                                   if($(this).attr('src') == "") {
+                                       console.log("no cover");
+                                       $(this).attr("src", altCover);
+                                   } else {
+                                       console.log("cover found");
+                                   }
+
+                               });
+                        });
 
                         
                     });

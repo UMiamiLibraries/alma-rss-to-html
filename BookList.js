@@ -186,6 +186,7 @@ function bookList() {
                     $.ajax({
                         type: "GET",
                         url: 'http://sp.library.miami.edu/external_scripts/newitems/updatealmacache.php',
+                        async: false,
                         data: {
                             "isbn": isbn,
                             "book_cover_url": url,

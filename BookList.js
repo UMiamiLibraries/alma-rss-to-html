@@ -105,30 +105,10 @@ function bookList() {
             
 
         },
-        urlExists: function (url){
-            var result = true;
-
-            $.ajax({
-                url:url,
-                type:'HEAD',
-                async: false,
-                error: function()
-                {
-                    result =false;
-                }
-            });
-
-            debugger;
-            return result;
-        },
         iterateUrls: function () {
             var elements = document.querySelectorAll('[property="url"]');
             var almaJSON = '';
-            var almaCacheFileExists = myBookList.urlExists('http://sp.library.miami.edu/external_scripts/newitems/cover_cache/alma_ids.json');
 
-            debugger;
-
-            if (almaCacheFileExists){
                 $.ajax({
                     type: "GET",
                     url: 'http://sp.library.miami.edu/external_scripts/newitems/cover_cache/alma_ids.json',
@@ -138,9 +118,7 @@ function bookList() {
                         almaJSON = $.parseJSON(data);
                     }
                 });
-            }
 
-            debugger;
 
             $('.item-title a').each(function(i) {
                 var url = $(this).attr('href');
@@ -150,7 +128,6 @@ function bookList() {
                 var bookCoverUrl = '';
 
                 if (almaJSON.length != 0) {
-                    debugger;
                     if (almaJSON.hasOwnProperty(almaId)) {
                         bookCoverUrl = almaJSON[almaId].book_cover;
                         myBookList.setBookCover(grandFather, bookCoverUrl);
@@ -205,12 +182,10 @@ function bookList() {
                 var bookCoverUrl = "http://sp.library.miami.edu/external_scripts/newitems/bookcover.php?syndetics_client_code=miamih&image_size=LC&isbn=" + isbn;
 
                 $.get(bookCoverUrl, function (url){
-                    debugger;
                     myBookList.setBookCover(grandFather, url);
                     $.ajax({
                         type: "GET",
                         url: 'http://sp.library.miami.edu/external_scripts/newitems/updatealmacache.php',
-                        async: false,
                         data: {
                             "isbn": isbn,
                             "book_cover_url": url,

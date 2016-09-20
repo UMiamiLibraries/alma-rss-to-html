@@ -205,6 +205,7 @@ function bookList() {
                 var bookCoverUrl = "http://sp.library.miami.edu/external_scripts/newitems/bookcover.php?syndetics_client_code=miamih&image_size=LC&isbn=" + isbn;
                 myBookList.setBookCover(grandFather, bookCoverUrl);
 
+                debugger;
                 $.ajax({
                     type: "GET",
                     url: 'http://sp.library.miami.edu/external_scripts/newitems/updatealmacache.php',

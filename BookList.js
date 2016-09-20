@@ -207,12 +207,9 @@ function bookList() {
 
                 $.ajax({
                     type: "GET",
-                    url: 'http://sp.library.miami.edu/external_scripts/newitems/bookcover.php',
+                    url: 'http://sp.library.miami.edu/external_scripts/newitems/updatealmacache.php',
                     data: {
-                        "syndetics_client_code": '',
                         "isbn": isbn,
-                        "image_size": '',
-                        "update_almaIds": 'true',
                         "book_cover_url": bookCoverUrl,
                         "alma_id": almaId
                     },

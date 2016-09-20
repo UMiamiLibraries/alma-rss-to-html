@@ -134,12 +134,12 @@ function bookList() {
             });
         },
         setBookCover : function (grandFather, bookCoverUrl) {
-            $.get(bookCoverUrl, function(data) {
+
                 var imgCover = document.createElement('img');
                 imgCover.setAttribute('src', data);
                 grandFather.find(".item-image").prepend(imgCover);
                 $("#new_books_container .item-image").addClass("remove-placeholder-cover");
-            });
+
 
             //set fallback image
             $( document ).ready(function() {

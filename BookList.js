@@ -123,7 +123,7 @@ function bookList() {
                     success: function (data) {
                         almaJSON = $.parseJSON(data);
                         if (almaJSON.length != 0) {
-                            bookCoverUrl = almaJSON.book_cover;
+                            bookCoverUrl = almaJSON["book_cover"];
                             myBookList.setBookCover(grandFather, bookCoverUrl);
                         }
                     },

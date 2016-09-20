@@ -173,7 +173,7 @@ function bookList() {
                     }
                 }
 
-                var bookCoverUrl = "http://sp.library.miami.edu/external_scripts/newitems/bookcover.php?syndetics_client_code=miamih&image_size=LC&isbn=" + isbn;
+                var bookCoverUrl = "http://sp.library.miami.edu/external_scripts/newitems/bookcover.php?syndetics_client_code=miamih&image_size=LC&googleBooksKey=AIzaSyAcN6sHJbsrvKzbRJ1ksV48A2vCW2qGk20&isbn=" + isbn;
 
                 $.get(bookCoverUrl, function (url){
                     myBookList.setBookCover(grandFather, url);

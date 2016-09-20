@@ -203,20 +203,24 @@ function bookList() {
                 }
 
                 var bookCoverUrl = "http://sp.library.miami.edu/external_scripts/newitems/bookcover.php?syndetics_client_code=miamih&image_size=LC&isbn=" + isbn;
-                myBookList.setBookCover(grandFather, bookCoverUrl);
 
-                debugger;
-                $.ajax({
-                    type: "GET",
-                    url: 'http://sp.library.miami.edu/external_scripts/newitems/updatealmacache.php',
-                    async: false,
-                    data: {
-                        "isbn": isbn,
-                        "book_cover_url": bookCoverUrl,
-                        "alma_id": almaId
-                    },
-                    dataType: "text"
+                $.get(bookCoverUrl, function (url){
+                    debugger;
+                    myBookList.setBookCover(grandFather, url);
+                    $.ajax({
+                        type: "GET",
+                        url: 'http://sp.library.miami.edu/external_scripts/newitems/updatealmacache.php',
+                        async: false,
+                        data: {
+                            "isbn": isbn,
+                            "book_cover_url": url,
+                            "alma_id": almaId
+                        },
+                        dataType: "text"
+                    });
                 });
+
+
 
             });
         }

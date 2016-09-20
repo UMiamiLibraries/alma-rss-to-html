@@ -106,18 +106,6 @@ function bookList() {
 
         },
         iterateUrls: function () {
-            var elements = document.querySelectorAll('[property="url"]');
-            var almaJSON = '';
-
-                $.ajax({
-                    type: "GET",
-                    url: 'http://sp.library.miami.edu/external_scripts/newitems/cover_cache/alma_ids.json',
-                    dataType: "text",
-                    async: false,
-                    success: function (data) {
-                        almaJSON = $.parseJSON(data);
-                    }
-                });
 
 
             $('.item-title a').each(function(i) {
@@ -126,17 +114,23 @@ function bookList() {
                 var split = url.split(",");
                 var almaId = split[split.length - 1];
                 var bookCoverUrl = '';
+                var almaJSON = '';
 
-                if (almaJSON.length != 0) {
-                    if (almaJSON.hasOwnProperty(almaId)) {
-                        bookCoverUrl = almaJSON[almaId].book_cover;
-                        myBookList.setBookCover(grandFather, bookCoverUrl);
-                    } else {
+                $.ajax({
+                    type: "GET",
+                    url: 'http://sp.library.miami.edu/external_scripts/newitems/cover_cache/'+almaId+'.json',
+                    dataType: "text",
+                    success: function (data) {
+                        almaJSON = $.parseJSON(data);
+                        if (almaJSON.length != 0) {
+                            bookCoverUrl = almaJSON.book_cover;
+                            myBookList.setBookCover(grandFather, bookCoverUrl);
+                        }
+                    },
+                    error: function(xhr) {
                         myBookList.getBookMetadata(almaId, grandFather);
                     }
-                }else{
-                    myBookList.getBookMetadata(almaId, grandFather);
-                }
+                });
             });
         },
         setBookCover : function (grandFather, bookCoverUrl) {
@@ -186,7 +180,6 @@ function bookList() {
                     $.ajax({
                         type: "GET",
                         url: 'http://sp.library.miami.edu/external_scripts/newitems/updatealmacache.php',
-                        async: false,
                         data: {
                             "isbn": isbn,
                             "book_cover_url": url,

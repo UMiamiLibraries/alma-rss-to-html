@@ -136,7 +136,7 @@ function bookList() {
         setBookCover : function (grandFather, bookCoverUrl) {
 
                 var imgCover = document.createElement('img');
-                imgCover.setAttribute('src', data);
+                imgCover.setAttribute('src', bookCoverUrl);
                 grandFather.find(".item-image").prepend(imgCover);
                 $("#new_books_container .item-image").addClass("remove-placeholder-cover");
 

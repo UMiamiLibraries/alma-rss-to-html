@@ -73,13 +73,13 @@ function bookList() {
                         //placeholder for empty author
                         $('#new_books_container .item-author').each(function() {
                             if($(this).is(':empty')){
-                                $('#new_books_container .item-author').append('<span>[Click for details]</span>');
+                                $('#new_books_container .item-author:empty').append('<span>[Click for details]</span>');
                             }
                         });
 
                         $('#new_books_container .label-author a span').each(function() {
                             if($(this).is(':empty')){
-                                $('#new_books_container .label-author a span').append('<span>[Click for details]</span>');
+                                $('#new_books_container .label-author a span:empty').append('<span>[Click for details]</span>');
                             }
                         });
 
@@ -90,48 +90,24 @@ function bookList() {
                         var dateBtn = $('button[data-sort-value="arrivaldate"]');
 
                         $(authorBtn).on( 'click', function() {
-                             if (authorBtn.hasClass('active-sort')) {
                                 $('#new_books_container .label-author').show();
                                 $('#new_books_container .label-title').show();
                                 $('#new_books_container .item-title').hide();
-                                $('#new_books_container .item-author').hide();
-                            }
-                            else {
-                                $('#new_books_container .label-author').hide();
-                                $('#new_books_container .label-title').hide();
-                                $('#new_books_container .item-title').show();
-                                $('#new_books_container .item-author').show();
-                            }
+                                $('#new_books_container .item-author').hide();                            
                         }); 
                        
-                       $(titleBtn).on( 'click', function() {
-                            if (titleBtn.hasClass('active-sort')) {
+                       $(titleBtn).on( 'click', function() {                            
                                 $('#new_books_container .label-author').hide();
                                 $('#new_books_container .label-title').hide();
                                 $('#new_books_container .item-title').show();
-                                $('#new_books_container .item-author').show();
-                            }
-                            else {                       
-                                $('#new_books_container .label-author').show();
-                                $('#new_books_container .label-title').show();
-                                $('#new_books_container .item-title').hide();
-                                $('#new_books_container .item-author').hide(); 
-                            }
+                                $('#new_books_container .item-author').show();                            
                         }); 
 
-                       $(dateBtn).on( 'click', function() {
-                            if (dateBtn.hasClass('active-sort')) {
+                       $(dateBtn).on( 'click', function() {                            
                                 $('#new_books_container .label-author').hide();
                                 $('#new_books_container .label-title').hide();
                                 $('#new_books_container .item-title').show();
-                                $('#new_books_container .item-author').show();
-                            }
-                            else {                       
-                                $('#new_books_container .label-author').show();
-                                $('#new_books_container .label-title').show();
-                                $('#new_books_container .item-title').hide();
-                                $('#new_books_container .item-author').hide(); 
-                            }
+                                $('#new_books_container .item-author').show();                           
                         }); 
 
 

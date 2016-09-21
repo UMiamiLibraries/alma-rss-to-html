@@ -71,13 +71,13 @@ function bookList() {
                     //placeholder for empty author
                     $('#new_books_container .item-author').each(function() {
                         if($(this).is(':empty')){
-                            $('#new_books_container .item-author').append('<span>[Click for details]</span>');
+                            $('#new_books_container .item-author').is(':empty').append('<span>[Click for details]</span>');
                         }
                     });
 
                     $('#new_books_container .label-author a span').each(function() {
                         if($(this).is(':empty')){
-                            $('#new_books_container .label-author a span').append('<span>[Click for details]</span>');
+                            $('#new_books_container .label-author a span').is(':empty').append('<span>[Click for details]</span>');
                         }
                     });
 

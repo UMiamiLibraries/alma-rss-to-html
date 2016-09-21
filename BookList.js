@@ -110,6 +110,14 @@ function bookList() {
                                 $('#new_books_container .item-author').show();                           
                         }); 
 
+                       
+                       //clean up slash on titles                       
+                       //$('#new_books_container .item-title .item-title-text').each(function() {
+                        //    var frontTitle = $('#new_books_container .item-title .item-title-text').text();
+                        //    frontTitle = frontTitle.replace(/\//g, " ");
+                        //    $(this).append(frontTitle);
+                       // });
+
 
                     });
 

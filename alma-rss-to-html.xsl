@@ -30,22 +30,40 @@
           <div class="item flipper" vocab="http://schema.org/" typeof="Book">
               <div class="front">
                   <div class="item-image"><span class="fake-space">fake</span></div>
-                  <div class="item-title">
-                      <a>
-                          <xsl:attribute name="property">url</xsl:attribute>
-                          <xsl:attribute name="href">
-                              <xsl:value-of select="./link"/>
-                          </xsl:attribute>
-                          <span class="item-title-text">
-                              <xsl:attribute name="property">name</xsl:attribute>
-                              <xsl:value-of select="./title"/>
-                          </span>
-                      </a>
+                  <div class="front-labels">
+                        <div class="item-title">
+                            <a>
+                                <xsl:attribute name="property">url</xsl:attribute>
+                                <xsl:attribute name="href">
+                                    <xsl:value-of select="./link"/>
+                                </xsl:attribute>
+                                <span class="item-title-text">
+                                    <xsl:attribute name="property">name</xsl:attribute>
+                                    <xsl:value-of select="./title"/>
+                                </span>
+                            </a>
+                        </div>
+                        <div class="label-author">
+                          <a>
+                                <xsl:attribute name="property">url</xsl:attribute>
+                                <xsl:attribute name="href">
+                                    <xsl:value-of select="./link"/>
+                                </xsl:attribute>
+                                <span class="item-title-text">
+                                    <xsl:attribute name="property">author</xsl:attribute>
+                                    <xsl:value-of select="./author"/>
+                                </span>
+                            </a>
+                        </div>
                   </div>
               </div><!--end front-->
 
               <div class="back">
                   <ul class="item-info">
+                      <li class="label-title">
+                        <xsl:attribute name="property">name</xsl:attribute>
+                          <xsl:value-of select="./title"/>
+                      </li>
                       <li class="item-author">
                           <xsl:attribute name="property">author</xsl:attribute>
                           <xsl:value-of select="./author"/>
@@ -69,7 +87,7 @@
                       </li>
                   </ul>
                   <div class="cat-request">
-                    <a target="blank" title="Click for more details">
+                    <a target="blank" title="See item in uSearch">
                       <xsl:attribute name="property">url</xsl:attribute>
                           <xsl:attribute name="href">
                               <xsl:value-of select="./link"/>

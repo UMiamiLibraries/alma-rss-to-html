@@ -98,15 +98,11 @@ function bookList() {
                         }
                     });
 
-
-
-                }); //end .getScript
-
-            
+               
+                }); //end .getScript            
 
         },
         iterateUrls: function () {
-
 
             $('.item-title a').each(function(i) {
                 var url = $(this).attr('href');

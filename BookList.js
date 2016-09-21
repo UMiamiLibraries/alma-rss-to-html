@@ -67,23 +67,8 @@ function bookList() {
                         $(flipCard).toggleClass('hover');
                     });
 
-                    //show author labels when sorting by author
-                    $( document ).ready(function() {
-                        var authorBtn = $('button[data-sort-value="author"]');
-
-                        if (authorBtn.hasClass('active-sort')) {
-                            $('#new_books_container .label-author').show();
-                            $('#new_books_container .label-title').show();
-                            $('#new_books_container .item-title').hide();
-                            $('#new_books_container .item-author').hide();
-                        }
-                        else {
-                            $('#new_books_container .label-author').hide();
-                            $('#new_books_container .label-title').hide();
-                            $('#new_books_container .item-title').show();
-                            $('#new_books_container .item-author').show();
-                        }
-                    });
+                    
+                    
 
                     //placeholder for empty author
                     $('#new_books_container .item-author').each(function() {
@@ -94,7 +79,7 @@ function bookList() {
 
                     $('#new_books_container .label-author').each(function() {
                         if($(this).is(':empty')){
-                            $('#new_books_container .label-author').append('<span>[Click for details]</span>');
+                            $('#new_books_container .label-author a span').append('<span>[Click for details]</span>');
                         }
                     });
 
@@ -106,7 +91,7 @@ function bookList() {
 
             $('.item-title a').each(function(i) {
                 var url = $(this).attr('href');
-                var grandFather = $(this).parent().parent();
+                var grandFather = $(this).parent().parent().parent();
                 var split = url.split(",");
                 var almaId = split[split.length - 1];
                 var bookCoverUrl = '';
@@ -153,6 +138,24 @@ function bookList() {
                     }
 
                 });
+
+                //show author labels when sorting by author
+                   
+                        var authorBtn = $('button[data-sort-value="author"]');
+
+                        if (authorBtn.hasClass('active-sort')) {
+                            $('#new_books_container .label-author').show();
+                            $('#new_books_container .label-title').show();
+                            $('#new_books_container .item-title').hide();
+                            $('#new_books_container .item-author').hide();
+                        }
+                        else {
+                            $('#new_books_container .label-author').hide();
+                            $('#new_books_container .label-title').hide();
+                            $('#new_books_container .item-title').show();
+                            $('#new_books_container .item-author').show();
+                        }
+
             });
         },
         getBookMetadata : function (almaId, grandFather) {

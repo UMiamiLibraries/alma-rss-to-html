@@ -55,7 +55,7 @@ function bookList() {
                     // sort items on button click
                     $('#sorts').on( 'click', 'button', function() {
                         var sortByValue = $(this).attr('data-sort-value');
-                        $('#new_books').isotope({ sortBy: sortByValue});
+                        $('#new_books').isotope({ sortBy: sortByValue, sortAscending: true});
                         console.log('click');
                         $('#sorts button').removeClass('active-sort');
                         $(this).addClass('active-sort');

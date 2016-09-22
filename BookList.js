@@ -23,11 +23,7 @@ function bookList() {
 
                     var $win = $(window);
 
-                    //set timeout to remove preloader
-                    setTimeout(function(){
-                        $('#sorts').css('visibility', 'visible');
-                        $('#new_books').css('visibility', 'visible');
-                    }, 1000);
+                    
 
                     $win.on('load', function(){
 
@@ -48,7 +44,7 @@ function bookList() {
                             sortAscending: false
                         });
 
-                        $('.books-loading').hide();
+                        //$('.books-loading').hide();
 
                     });
 
@@ -69,6 +65,12 @@ function bookList() {
                     
 
                    $( document ).ready(function() {
+
+                        //set timeout to remove preloader
+                        setTimeout(function(){
+                            $('#sorts').css('visibility', 'visible');
+                            $('#new_books').css('visibility', 'visible');
+                        }, 1000);
                     
                         //placeholder for empty author
                         $('#new_books_container .item-author').each(function() {

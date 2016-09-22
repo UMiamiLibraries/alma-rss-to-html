@@ -21,9 +21,7 @@ function bookList() {
                 $.getScript(isotopeScript, function(){
                     $("head").append("<script src='" + isotopeScript + "'>");
 
-                    var $win = $(window);
-
-                    
+                    var $win = $(window);                    
 
                     $win.on('load', function(){
 
@@ -67,10 +65,10 @@ function bookList() {
                    $( document ).ready(function() {
 
                         //set timeout to remove preloader
-                        setTimeout(function(){
+                        //setTimeout(function(){
                             $('#sorts').css('visibility', 'visible');
                             $('#new_books').css('visibility', 'visible');
-                        }, 1000);
+                        //}, 1000);
                     
                         //placeholder for empty author
                         $('#new_books_container .item-author').each(function() {

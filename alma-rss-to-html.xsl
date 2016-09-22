@@ -2,8 +2,7 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 		xmlns:xs="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="xs" version="1.0">
   <xsl:template match="/">
-      <div id="new_books_container">
-        <div class="books-loading"><i class="fa fa-spinner" aria-hidden="true"><span class="fake-space">fake</span></i><br />Loading</div>          
+      <div id="new_books_container">            
 
           <div id="sorts" class="sort-by-button-group">
               <button data-sort-value="arrivaldate" class="active-sort">Arrival Date</button>
